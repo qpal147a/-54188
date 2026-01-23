@@ -1,0 +1,43 @@
+{
+    "id": "anti_recall_advanced",
+    "name": "高级防撤回",
+    "description": "标记并恢复被撤回的弹幕和评论",
+    "version": "2.0.0",
+    "author": "BiliPai",
+    "type": "danmaku",
+    "rules": [
+        {
+            "field": "content",
+            "op": "contains",
+            "value": "[撤回]",
+            "action": "highlight",
+            "style": {
+                "color": "#FF0000",
+                "bold": true,
+                "scale": 1.2
+            }
+        },
+        {
+            "condition": {
+                "or": [
+                    {
+                        "field": "userId",
+                        "op": "in",
+                        "value": [123456, 789012]
+                    },
+                    {
+                        "field": "content",
+                        "op": "regex",
+                        "value": "重要.*|紧急.*"
+                    }
+                ]
+            },
+            "action": "highlight",
+            "style": {
+                "color": "#FFA500",
+                "bold": true,
+                "border": true
+            }
+        }
+    ]
+}
